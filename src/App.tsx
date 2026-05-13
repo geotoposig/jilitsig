@@ -10,6 +10,10 @@ import {
   Phone,
   Linkedin,
   Github,
+  Facebook,
+  Instagram,
+  Twitter,
+  MessageCircle,
   Award,
   Briefcase,
   Layers,
@@ -31,7 +35,12 @@ const contact = {
   phone: "+212 668 09 02 85",
   email: "jilitsig@gmail.com",
   location: "Agadir, Maroc",
-  linkedin: "#",
+  linkedin: "https://www.linkedin.com/in/Jilitelmostafa",
+  facebook: "https://facebook.com/Jilitelmostafa",
+  instagram: "https://instagram.com/jilitsig",
+  twitter: "https://x.com/jilitmostafa",
+  tiktok: "https://tiktok.com/@jilitelmostafa",
+  whatsapp: "https://wa.me/212668090285",
 };
 
 type Page = 'home' | 'competences' | 'experience' | 'projets' | 'websig';
@@ -151,18 +160,47 @@ export default function App() {
                     <strong className="text-blue-600 font-bold">Formateur certifié (ArcGIS, QGIS)</strong>, j'allie expertise scientifique et innovation technologique pour l'aménagement durable des territoires.
                   </p>
                   
-                  <div className="pt-8 border-t border-slate-100 flex flex-col gap-4">
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="font-black uppercase tracking-tight text-slate-400 text-xs text-nowrap">Email</span>
-                      <span className="font-mono text-slate-600 font-medium break-all text-right ml-4">{contact.email}</span>
+                  <div className="pt-8 border-t border-slate-100 flex flex-col gap-6">
+                    <div className="flex items-center justify-center gap-3">
+                      {[
+                        { icon: <Facebook size={18} />, url: contact.facebook, color: "hover:text-blue-600", label: "Facebook" },
+                        { icon: <Instagram size={18} />, url: contact.instagram, color: "hover:text-pink-600", label: "Instagram" },
+                        { icon: <Linkedin size={18} />, url: contact.linkedin, color: "hover:text-blue-700", label: "LinkedIn" },
+                        { icon: <Twitter size={18} />, url: contact.twitter, color: "hover:text-slate-900", label: "Twitter" },
+                        { 
+                          icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>, 
+                          url: contact.tiktok, 
+                          color: "hover:text-black", 
+                          label: "TikTok" 
+                        },
+                        { icon: <MessageCircle size={18} />, url: contact.whatsapp, color: "hover:text-emerald-600", label: "WhatsApp" },
+                      ].map((social, idx) => (
+                        <a 
+                          key={idx} 
+                          href={social.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className={`p-2.5 bg-slate-50 border border-slate-100 rounded-full text-slate-400 ${social.color} transition-all hover:scale-110 hover:bg-white hover:shadow-sm`}
+                          title={social.label}
+                        >
+                          {social.icon}
+                        </a>
+                      ))}
                     </div>
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="font-black uppercase tracking-tight text-slate-400 text-xs">Phone</span>
-                      <span className="font-mono text-slate-600 font-medium">{contact.phone}</span>
-                    </div>
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="font-black uppercase tracking-tight text-slate-400 text-xs text-nowrap">Location</span>
-                      <span className="font-mono text-slate-600 font-medium text-right ml-4">{contact.location}</span>
+
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="font-black uppercase tracking-tight text-slate-400 text-xs text-nowrap">Email</span>
+                        <span className="font-mono text-slate-600 font-medium break-all text-right ml-4">{contact.email}</span>
+                      </div>
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="font-black uppercase tracking-tight text-slate-400 text-xs">Phone</span>
+                        <span className="font-mono text-slate-600 font-medium">{contact.phone}</span>
+                      </div>
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="font-black uppercase tracking-tight text-slate-400 text-xs text-nowrap">Location</span>
+                        <span className="font-mono text-slate-600 font-medium text-right ml-4">{contact.location}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -857,10 +895,24 @@ export default function App() {
           © 2026 {name} | INGÉNIERIE GÉOMATIQUE & WEB-SIG
         </div>
         
-        <div className="flex gap-10 font-mono text-xs uppercase text-slate-500 border-l border-slate-200 pl-10 hidden lg:flex">
-          <a href="#" className="hover:text-blue-600 transition-colors cursor-pointer font-bold">LinkedIn</a>
-          <a href="#" className="hover:text-blue-600 transition-colors cursor-pointer font-bold">GitHub</a>
-          <a href="#" className="text-slate-300 font-bold px-2 py-0.5 border border-slate-100 rounded">V4.2_STABLE</a>
+        <div className="flex items-center gap-4 border-l border-slate-200 pl-10 hidden lg:flex">
+          {[
+            { icon: <Facebook size={16} />, url: contact.facebook, color: "hover:text-blue-600" },
+            { icon: <Instagram size={16} />, url: contact.instagram, color: "hover:text-pink-600" },
+            { icon: <Linkedin size={16} />, url: contact.linkedin, color: "hover:text-blue-700" },
+            { icon: <Twitter size={16} />, url: contact.twitter, color: "hover:text-slate-900" },
+            { 
+              icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>, 
+              url: contact.tiktok, 
+              color: "hover:text-black" 
+            },
+            { icon: <MessageCircle size={16} />, url: contact.whatsapp, color: "hover:text-emerald-600" },
+          ].map((social, idx) => (
+            <a key={idx} href={social.url} target="_blank" rel="noopener noreferrer" className={`text-slate-400 ${social.color} transition-colors p-1`}>
+              {social.icon}
+            </a>
+          ))}
+          <span className="ml-4 text-[10px] text-slate-300 font-bold px-2 py-0.5 border border-slate-100 rounded">V4.2_STABLE</span>
         </div>
       </footer>
     </div>
