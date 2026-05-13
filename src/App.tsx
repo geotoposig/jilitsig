@@ -17,6 +17,7 @@ import {
   Menu,
   X,
   MapPinned,
+  Monitor,
 } from 'lucide-react';
 
 const name = "Elmostafa JILIT";
@@ -30,7 +31,7 @@ const contact = {
   linkedin: "#",
 };
 
-type Page = 'home' | 'competences' | 'experience' | 'projets';
+type Page = 'home' | 'competences' | 'experience' | 'projets' | 'websig';
 
 export default function App() {
   const [page, setPage] = useState<Page>('home');
@@ -43,6 +44,7 @@ export default function App() {
     { label: "Compétences", id: 'competences' },
     { label: "Expériences", id: 'experience' },
     { label: "Projets", id: 'projets' },
+    { label: "Plateformes Web-SIG", id: 'websig' },
   ];
 
   const pageVariants = {
@@ -698,6 +700,142 @@ export default function App() {
                       ))}
                     </tbody>
                   </table>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {page === 'websig' && (
+            <motion.div
+              key="websig"
+              variants={pageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="space-y-8"
+            >
+              <div className="flex justify-between items-end border-b border-gray-300 pb-4">
+                <div>
+                   <h2 className="text-3xl font-black uppercase tracking-tighter">Plateformes Web-SIG Numériques</h2>
+                   <p className="text-xs text-slate-500 font-medium uppercase tracking-widest mt-1">Conception de Solutions Géospatiales Intégrées</p>
+                </div>
+                <span className="font-mono text-[10px] text-slate-400">GEOPORTAL_SYS.v4</span>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {/* Main Showcase Project */}
+                <div className="lg:col-span-2 space-y-6">
+                  <div className="bg-white border border-gray-300 overflow-hidden group">
+                    <div className="bg-slate-900 p-8 text-white relative overflow-hidden">
+                       <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '24px 24px' }}></div>
+                       <div className="relative z-10">
+                          <h3 className="text-2xl font-black uppercase tracking-tighter mb-2">Système de Gestion Numérique TNB-GIS</h3>
+                          <p className="text-blue-400 font-mono text-[11px] font-bold tracking-widest">COMMUNE OULAD SGHIR | DÉVELOPPÉ PAR ELMOSTAFA JILIT</p>
+                       </div>
+                    </div>
+                    
+                    <div className="p-8 space-y-8">
+                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                         <div className="bg-slate-50 p-4 border border-gray-100 flex flex-col items-center text-center gap-2 group-hover:bg-blue-50 group-hover:border-blue-100 transition-colors">
+                            <MapPinned className="text-blue-600" size={24} />
+                            <h4 className="text-[11px] font-black uppercase">Repérage Spatial</h4>
+                            <p className="text-[10px] text-slate-500">Localisation géographique précise à 100%</p>
+                         </div>
+                         <div className="bg-slate-50 p-4 border border-gray-100 flex flex-col items-center text-center gap-2 group-hover:bg-blue-50 group-hover:border-blue-100 transition-colors">
+                            <Database className="text-blue-600" size={24} />
+                            <h4 className="text-[11px] font-black uppercase">Données Centralisées</h4>
+                            <p className="text-[10px] text-slate-500">Architecture PostGIS & PostgreSQL</p>
+                         </div>
+                         <div className="bg-slate-50 p-4 border border-gray-100 flex flex-col items-center text-center gap-2 group-hover:bg-blue-50 group-hover:border-blue-100 transition-colors">
+                            <Layers className="text-blue-600" size={24} />
+                            <h4 className="text-[11px] font-black uppercase">Optimisation Fiscale</h4>
+                            <p className="text-[10px] text-slate-500">Gestion précise de l'assiette fiscale (TNB)</p>
+                         </div>
+                       </div>
+
+                       <div className="space-y-4">
+                          <div className="flex items-center gap-3">
+                             <div className="h-0.5 w-6 bg-blue-600"></div>
+                             <h4 className="text-xs font-black uppercase tracking-widest">Description du Projet</h4>
+                          </div>
+                          <p className="text-xs text-slate-600 leading-relaxed text-justify">
+                            Le projet <strong>TNB-GIS</strong> représente une avancée majeure dans la gestion des recettes de la commune d'Oulad Sghir. Le système repose sur le croisement des données spatiales avec les registres fiscaux locaux, permettant d'identifier les terrains non bâtis, de les classer et de calculer automatiquement les redevances via une carte interactive.
+                          </p>
+                       </div>
+
+                       <div className="space-y-4">
+                          <div className="flex items-center gap-3">
+                             <div className="h-0.5 w-6 bg-blue-600"></div>
+                             <h4 className="text-xs font-black uppercase tracking-widest">Objectifs Stratégiques</h4>
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+                             {[
+                               { title: "Digitalisation Totale", desc: "Remplacement des registres papier par un système spatialisé." },
+                               { title: "Équité Fiscale", desc: "Infrastruture garantissant l'inclusion de tous les contribuables." },
+                               { title: "Aide à la Décision", desc: "Dashboards temps réel identifiant le potentiel fiscal." },
+                               { title: "Automatisation", desc: "Triggers SQL pour mise à jour automatique des états de parcelles." }
+                             ].map((obj, i) => (
+                               <div key={i} className="flex gap-3">
+                                  <div className="shrink-0 w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center mt-0.5">
+                                     <ChevronRight size={10} className="text-blue-600" />
+                                  </div>
+                                  <div>
+                                     <p className="text-[11px] font-black uppercase mb-0.5">{obj.title}</p>
+                                     <p className="text-[10px] text-slate-500 leading-tight">{obj.desc}</p>
+                                  </div>
+                               </div>
+                             ))}
+                          </div>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Sidebar: Technical Stack */}
+                <div className="space-y-6">
+                  <div className="bg-slate-50 border border-gray-300 p-6">
+                    <div className="flex justify-between items-start mb-6">
+                       <h3 className="text-xs font-black uppercase tracking-widest text-slate-500">Architecture Technique</h3>
+                       <Code size={16} className="text-slate-400" />
+                    </div>
+
+                    <div className="space-y-6">
+                       {[
+                         { label: "Bases de Données Spatiales", techs: ["PostgreSQL", "PostGIS"] },
+                         { label: "Interface Cartographique", techs: ["Leaflet.js", "GeoJSON", "JavaScript"] },
+                         { label: "Traitement Backend", techs: ["PHP", "SQL Triggers"] },
+                         { label: "Ingénierie SIG", techs: ["QGIS", "ArcGIS (Data Prep)"] }
+                       ].map((stack, i) => (
+                         <div key={i}>
+                            <p className="text-[10px] font-black uppercase text-blue-600 mb-2 truncate">{stack.label}</p>
+                            <div className="flex flex-wrap gap-1.5">
+                               {stack.techs.map(t => (
+                                 <span key={t} className="px-2 py-0.5 bg-white border border-gray-200 text-[10px] font-bold text-slate-700 rounded shadow-sm">
+                                    {t}
+                                 </span>
+                               ))}
+                            </div>
+                         </div>
+                       ))}
+                    </div>
+
+                    <div className="mt-8 pt-6 border-t border-gray-200">
+                       <button className="w-full bg-blue-600 text-white font-black uppercase text-[10px] tracking-widest py-3 rounded hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+                          DÉMONSTRATION_LIVE <Monitor size={14} />
+                       </button>
+                    </div>
+                  </div>
+
+                  <div className="bg-white border border-gray-300 p-6 flex flex-col gap-4">
+                     <div className="flex items-center gap-2 text-slate-400">
+                        <Award size={14} />
+                        <span className="text-[9px] font-black uppercase tracking-widest">Certification Projet</span>
+                     </div>
+                     <p className="text-[11px] font-bold leading-tight">
+                        Cette solution a été conçue pour renforcer la gouvernance numérique des services publics.
+                     </p>
+                     <p className="text-[10px] text-slate-500 italic">Version Stable 4.2 - Déploiement Municipal 2026</p>
+                  </div>
                 </div>
               </div>
             </motion.div>
