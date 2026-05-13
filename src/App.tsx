@@ -36,6 +36,8 @@ export default function App() {
   const [page, setPage] = useState<Page>('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const [expandedProjectId, setExpandedProjectId] = useState<string | null>(null);
+
   const navLinks: { label: string; id: Page }[] = [
     { label: "Accueil", id: 'home' },
     { label: "Compétences", id: 'competences' },
@@ -238,48 +240,101 @@ export default function App() {
               exit="exit"
               className="space-y-8"
             >
-              <div className="flex justify-between items-end border-b border-gray-300 pb-4">
-                <h2 className="text-3xl font-black uppercase tracking-tighter">Expertise Technique</h2>
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-gray-300 pb-4 gap-4">
+                <div>
+                  <h2 className="text-3xl font-black uppercase tracking-tighter">Compétences & Expertise</h2>
+                  <p className="text-xs text-slate-500 font-medium uppercase tracking-widest mt-1">Géo-Intelligence & Analyse Spatiale</p>
+                </div>
                 <span className="font-mono text-[10px] text-slate-400">STACK_ANALYSIS.LOG</span>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {[
                   {
-                    title: "SIG Advanced",
-                    skills: ["ArcGIS Pro", "QGIS", "Analyse Spatiale", "Télédétection"],
-                    level: 95,
+                    title: "1. Géomatique & SIG Advanced (Desktop & Cloud)",
+                    points: [
+                      { label: "Expertise Logicielle", text: "Maîtrise avancée de ArcGIS Pro/Desktop et QGIS (Analyse spatiale complexe, sémiologie graphique, et modélisation 3D)." },
+                      { label: "Cloud Computing", text: "Analyse de données géospatiales massives (Big Data) via Google Earth Engine (GEE) pour le suivi environnemental et climatique." },
+                      { label: "Automatisation", text: "Développement de scripts Python (ArcPy, PyQGIS) pour l'optimisation des workflows et le géotraitement automatisé." },
+                      { label: "Databases", text: "Conception et gestion de bases de données spatiales (PostgreSQL/PostGIS, SQL Server, Access)." },
+                      { label: "Outils SIG", text: "Utilisation intensive de Grass GIS, Global Mapper, MapInfo, et ArcView." }
+                    ],
+                    skills: ["ArcGIS Pro", "QGIS", "GEE", "Python", "PostGIS"],
                     dark: true
                   },
                   {
-                    title: "Webmapping & AI",
-                    skills: ["Python", "Leaflet.js", "Deep Learning", "JavaScript"],
-                    level: 82,
+                    title: "2. Télédétection & Geo-AI (Intelligence Artificielle)",
+                    points: [
+                      { label: "Traitement d'Images", text: "Analyse d'imagerie optique et radar (Sentinel-1 & 2, Landsat) via SNAP, ENVI, Erdas Imagine, et PCI Geomatica." },
+                      { label: "Analyse de Pointe", text: "Classification avancée (Object-based), reconnaissance de formes, segmentation, et études diachroniques haute résolution." },
+                      { label: "Innovation", text: "Initiation aux techniques de Deep Learning (Geo-AI) pour l'extraction automatique de caractéristiques et traitement des données LiDAR." }
+                    ],
+                    skills: ["Sentinel", "ENVI", "Erdas", "Deep Learning", "LiDAR"],
                     dark: false
                   },
                   {
-                    title: "Data Management",
-                    skills: ["PostGIS", "SQL Server", "Big Data (GEE)", "ETL Tools"],
-                    level: 88,
+                    title: "3. Webmapping & Plateformes Interactives",
+                    points: [
+                      { label: "Frontend Maps", text: "Création de cartes interactives dynamiques avec Leaflet.js, OpenLayers." },
+                      { label: "Dashboards", text: "Conception de tableaux de bord interactifs pour l'aide à la décision (ArcGIS Dashboards, Streamlit)." },
+                      { label: "Web GIS Architecture", text: "Maîtrise de la diffusion de flux de données standards (WMS, WFS, WMTS) et architecture de plateformes géographiques web." }
+                    ],
+                    skills: ["Leaflet", "OpenLayers", "Streamlit", "WMS/WFS"],
+                    dark: false
+                  },
+                  {
+                    title: "4. Urbanisme, Aménagement & Ingénierie",
+                    points: [
+                      { label: "Planification", text: "Suivi technique et analyse des documents d'urbanisme (SDAU, PA, PDAR, SRAT, SNAT)." },
+                      { label: "Études Thématiques", text: "Réalisation d'études statistiques et cartographiques (Habitat, population, foncier, scolaire) et analyses de risques." },
+                      { label: "Expertise Métier", text: "Maîtrise des techniques de levés topographiques, de photogrammétrie et de gestion urbaine 3D (Google SketchUp)." }
+                    ],
+                    skills: ["SDAU", "PA", "Photogrammétrie", "SketchUp"],
+                    dark: true
+                  },
+                  {
+                    title: "5. Data Science & Statistiques",
+                    points: [
+                      { label: "Analyse Quantitative", text: "Traitement et analyse de données d'enquêtes complexes via STATA, SPSS, et Sphinx." },
+                      { label: "Modélisation", text: "Validation d'hypothèses statistiques et réalisation de livrables d'aide à la décision." },
+                      { label: "Bureautique", text: "Maîtrise experte de la suite Office, particulièrement Excel (VBA/Power Query)." }
+                    ],
+                    skills: ["STATA", "SPSS", "Excel/VBA"],
+                    dark: false
+                  },
+                  {
+                    title: "6. Design, Infographie & Communication",
+                    points: [
+                      { label: "Design Graphique", text: "Conception de supports professionnels (Affiches, Flyers, Dépliants) avec Adobe Illustrator, Photoshop et Canvas." },
+                      { label: "Production Vidéo", text: "Montage et motion design pour la vulgarisation de données spatiales (After Effects, Camtasia Studio)." },
+                      { label: "Cartographie d'Édition", text: "Réalisation de documents graphiques haute qualité pour l'édition et la communication institutionnelle." }
+                    ],
+                    skills: ["Illustrator", "Photoshop", "After Effects"],
                     dark: false
                   }
                 ].map((cat, idx) => (
-                  <div key={idx} className={`${cat.dark ? 'bg-slate-900 text-white border-slate-800' : 'bg-white text-ink border-gray-300'} border p-8 flex flex-col justify-between min-h-[280px]`}>
-                    <div>
-                      <h3 className={`text-[10px] font-black uppercase tracking-widest mb-6 ${cat.dark ? 'text-blue-400' : 'text-slate-400'}`}>{cat.title}</h3>
-                      <div className="flex flex-wrap gap-1.5 mb-8">
+                  <div key={idx} className={`${cat.dark ? 'bg-slate-900 text-white border-slate-800' : 'bg-white text-ink border-gray-300'} border p-6 flex flex-col gap-6 relative group overflow-hidden`}>
+                    {cat.dark && <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/10 rounded-full blur-3xl -mr-16 -mt-16"></div>}
+                    
+                    <div className="relative z-10">
+                      <h3 className={`text-xs font-black uppercase tracking-widest mb-4 ${cat.dark ? 'text-blue-400' : 'text-blue-600'}`}>{cat.title}</h3>
+                      
+                      <div className="space-y-4 mb-6">
+                        {cat.points.map((p, pIdx) => (
+                          <div key={pIdx} className="group/item">
+                            <span className={`text-[10px] font-black uppercase tracking-tighter block mb-0.5 ${cat.dark ? 'text-slate-400' : 'text-slate-500'}`}>{p.label}</span>
+                            <p className={`text-[11px] leading-relaxed ${cat.dark ? 'text-slate-300' : 'text-slate-600'}`}>{p.text}</p>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="flex flex-wrap gap-1.5 pt-4 border-t border-gray-100/10">
                         {cat.skills.map(skill => (
-                          <span key={skill} className={`px-2 py-1 text-[10px] font-bold uppercase border rounded-sm ${cat.dark ? 'border-blue-500/50 text-blue-400' : 'border-blue-200 text-blue-600'}`}>
+                          <span key={skill} className={`px-2 py-0.5 text-[9px] font-bold uppercase border rounded-sm ${cat.dark ? 'border-blue-500/30 text-blue-400 bg-blue-500/5' : 'border-blue-100 text-blue-600 bg-blue-50'}`}>
                             {skill}
                           </span>
                         ))}
                       </div>
-                    </div>
-                    <div>
-                         <div className={`h-1 w-full rounded overflow-hidden ${cat.dark ? 'bg-slate-800' : 'bg-slate-100'}`}>
-                            <div className="h-full bg-blue-600" style={{ width: `${cat.level}%` }}></div>
-                         </div>
-                         <p className="font-mono text-[9px] mt-2 uppercase text-slate-500 tracking-widest">Mastery Level: {cat.level}%</p>
                     </div>
                   </div>
                 ))}
@@ -304,27 +359,69 @@ export default function App() {
               <div className="grid grid-cols-1 gap-4 max-w-4xl">
                 {[
                   {
-                    company: "Haut-Commissariat au Plan (HCP)",
-                    year: "2024",
-                    role: "Contrôleur Cartographe (RGPH 2024)",
-                    desc: "Mise à jour des repères géographiques et découpage des districts de recensement."
+                    company: "AGRI INVEST DÉVELOPPEMENT",
+                    year: "05/25 - 06/25",
+                    role: "Chargé de mission Enquêteur & Chauffeur",
+                    desc: "Collecte des données relatives aux coopératives laitières de la région de l'Oriental au profit de la Direction régionale de l'agriculture."
                   },
                   {
-                    company: "Agri Invest Développement",
-                    year: "MIS.",
-                    role: "Chargé de mission Enquêteur",
-                    desc: "Réalisation d'enquêtes de terrain et collecte de données socio-économiques dans la région de l'Oriental."
+                    company: "Global for Survey and Consulting (GSC)",
+                    year: "05/25 - 06/25",
+                    role: "Chargé de mission Enquêteur (N°01/ECP/2025)",
+                    desc: "Collecte de données pour mesurer la conformité des établissements pionniers aux critères de labélisation au profit de l'ONDH. Responsable: Prof. Mhammed Abderebbi."
+                  },
+                  {
+                    company: "Global for Survey and Consulting (GSC)",
+                    year: "07/24 - 08/24",
+                    role: "Chargé de mission Enquêteur Contrôleur & Chauffeur",
+                    desc: "Réalisation d'enquête panel de ménages au profit de l'Observatoire National de Développement Humain (ONDH). Responsable: Prof. Mhammed Abderebbi."
+                  },
+                  {
+                    company: "Haut-Commissariat au Plan (HCP)",
+                    year: "12/23 - 05/24",
+                    role: "Chargé de mission Opérateur Cellule SIG",
+                    desc: "Mise à jour des repères géographiques et découpage des districts pour le recensement 2024 RGPH (urbain et rural) via QGIS."
+                  },
+                  {
+                    company: "Haut-Commissariat au Plan (HCP)",
+                    year: "03/23 - 12/23",
+                    role: "Chargé de mission Contrôleur Cartographe",
+                    desc: "Coordination avec les agents d'autorité et les équipes terrain pour assurer une collecte précise des données cartographiques."
+                  },
+                  {
+                    company: "PCM Consulting",
+                    year: "08/22 - 03/23",
+                    role: "Enquêteur de terrain & Chauffeur",
+                    desc: "Enquête nationale pour l'établissement d'une situation de référence (PAF2022) sur l'inclusion de la petite agriculture."
+                  },
+                  {
+                    company: "SIS Consultants",
+                    year: "06/22 - 08/22",
+                    role: "Chargé de Projet - L'investissement touristique",
+                    desc: "Responsable d'équipes de collecte des données du secteur touristique (Supervision de 20 personnes)."
+                  },
+                  {
+                    company: "MAROC INGENOV",
+                    year: "06/21 - 08/22",
+                    role: "Enquêteur de terrain & Chauffeur",
+                    desc: "Inventaire des points d'eau et leurs usages en milieu urbain pour l'Agence du Bassin Hydraulique du Bouregreg et de la Chaouia (ABHBC)."
+                  },
+                  {
+                    company: "Faculté des Sciences Appliquées Ait Melloul",
+                    year: "11/19 - 03/20",
+                    role: "Stagiaire bibliothécaire",
+                    desc: "Numérisation, archivage et organisation d'événements scientifiques (conférences, workshops). Orientation et conseil du public."
                   }
                 ].map((exp, idx) => (
-                  <div key={idx} className="bg-white border border-gray-300 p-6 flex flex-col md:flex-row gap-6 relative group">
-                    <div className="w-20 shrink-0">
-                       <span className="inline-block bg-blue-600 text-white text-[9px] font-black px-2 py-0.5 uppercase tracking-widest">
+                  <div key={idx} className="bg-white border border-gray-300 p-6 flex flex-col md:flex-row gap-6 relative group hover:border-blue-400 transition-colors">
+                    <div className="w-32 shrink-0">
+                       <span className="inline-block bg-slate-900 border border-slate-800 text-white text-[9px] font-black px-2 py-0.5 uppercase tracking-widest">
                           {exp.year}
                        </span>
                     </div>
                     <div className="flex-1">
                       <h3 className="text-sm font-black uppercase tracking-tight mb-1">{exp.company}</h3>
-                      <p className="text-xs font-bold text-blue-600 italic mb-4">{exp.role}</p>
+                      <p className="text-xs font-bold text-blue-600 mb-4">{exp.role}</p>
                       <p className="text-xs text-slate-500 leading-relaxed font-medium">{exp.desc}</p>
                     </div>
                   </div>
@@ -360,42 +457,168 @@ export default function App() {
                     <tbody className="divide-y divide-gray-100">
                       {[
                         { 
-                          title: "Étude topographique TNB - Lalla Mimouna", 
-                          client: "Commune Lalla Mimouna",
-                          status: "Finalisé",
+                          title: "Étude de prestations topographiques liées à la Taxe sur les Terrains Non Bâtis (TNB) - Découpage technique par zones à tarification fiscale différenciée de la commune de Lalla Mimouna", 
+                          client: "Collectivité territoriale de LALLA MIMOUNA / KENITRA",
+                          status: "TERMINÉ",
+                          date: "31/10/2025",
                           statusColor: "text-green-600",
-                          id: "PROJ-2025-001"
+                          id: "BDC-260653",
+                          link: "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/260653"
                         },
                         { 
-                          title: "Carte plan d'aménagement Mokrisset", 
-                          client: "Commune Moqrissat",
-                          status: "En cours",
-                          statusColor: "text-blue-600",
-                          id: "PROJ-2025-002"
+                          title: "Elaboration d’une carte de la zone couverte par plan d’aménagement en vigueur de centre mokrisset", 
+                          client: "Commune rurale de MOQRISSAT / OUEZZANE",
+                          status: "TERMINÉ",
+                          date: "18/10/2025",
+                          statusColor: "text-green-600",
+                          id: "BDC-253995",
+                          link: "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/253995"
                         },
                         { 
                           title: "إعداد خريطة حديثة للجماعة الترابية البدوزة", 
-                          client: "Commune El Beddouza",
-                          status: "Révision",
-                          statusColor: "text-amber-600",
+                          client: "Commune EL BEDDOUZA / SAFI",
+                          status: "TERMINÉ",
+                          date: "21/10/2025",
+                          statusColor: "text-green-600",
                           rtl: true,
-                          id: "PROJ-2025-003"
+                          id: "BDC-254807",
+                          link: "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/254807"
+                        },
+                        { 
+                          title: "Etude de prestations topographiques liées à la Taxe sur les Terrains Non Bâtis (TNB) – Découpage technique par zones à tarification fiscale différenciée de la commune de SIDI TAIBI", 
+                          client: "Collectivité territoriale de SIDI TAIBI / KENITRA",
+                          status: "TERMINÉ",
+                          date: "23/10/2025",
+                          statusColor: "text-green-600",
+                          id: "BDC-256253",
+                          link: "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/256253"
+                        },
+                        { 
+                          title: "ETUDE TECHNIQUE - TOPOGRAPHIE", 
+                          client: "Commune AIT KAMRA / AL HOCEIMA",
+                          status: "TERMINÉ",
+                          date: "20/10/2025",
+                          statusColor: "text-green-600",
+                          id: "BDC-255075",
+                          link: "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/255075"
+                        },
+                        { 
+                          title: "Etablissement d’une carte topographique récente de la commune EL Maader EL kabir", 
+                          client: "Commune rurale de EL MAADER ELKABIR / TIZNIT",
+                          status: "TERMINÉ",
+                          date: "21/10/2025",
+                          statusColor: "text-green-600",
+                          id: "BDC-255551",
+                          link: "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/255551"
+                        },
+                        { 
+                          title: "Elaboration d’une cartographie de la commune de Oued Laou relevant de la Province de Tétouan", 
+                          client: "Commune urbaine de OUED LAOU / TETOUAN",
+                          status: "TERMINÉ",
+                          date: "17/10/2025",
+                          statusColor: "text-green-600",
+                          id: "BDC-253851",
+                          link: "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/253851"
+                        },
+                        { 
+                          title: "ETUDE TECHNIQUE : ETUDE TOPOGRAPHIQUE POUR L'ELABORATION DE CARTES THEMATIQUES ET LA DELIMUTATION DES ZONES A LA COMMUNE DE LAKHSSAS", 
+                          client: "Commune urbaine de LAKHSAS / SIDI IFNI",
+                          status: "TERMINÉ",
+                          date: "17/10/2025",
+                          statusColor: "text-green-600",
+                          id: "BDC-253602",
+                          link: "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/253602"
+                        },
+                        { 
+                          title: "إعداد خريطة حديثة للجماعة الترابية امي مقورن", 
+                          client: "Commune de IMI M'QOURNE / CHTOUKA-AIT BAHA",
+                          status: "TERMINÉ",
+                          date: "21/10/2025",
+                          statusColor: "text-green-600",
+                          rtl: true,
+                          id: "BDC-255008",
+                          link: "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/255008"
+                        },
+                        { 
+                          title: "ETABLISSEMENT D’UNE CARTE TOPOGRAPHIQUE DE LA COMMUNE AZLAF PROVINCE DE DRIOUCH", 
+                          client: "Commune rurale de AZLAF / MAROC, DRIOUCH",
+                          status: "TERMINÉ",
+                          date: "20/10/2025",
+                          statusColor: "text-green-600",
+                          id: "BDC-255146",
+                          link: "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/255146"
+                        },
+                        { 
+                          title: "Etude topographique pour l’élaboration de cartes thématique et la délimitation des zones conformement aux disposition de la loi 14-25 à la commune d’al hoceima", 
+                          client: "Commune urbaine de AL HOCEIMA / AL HOCEIMA",
+                          status: "TERMINÉ",
+                          date: "16/10/2025",
+                          statusColor: "text-green-600",
+                          id: "BDC-253156",
+                          link: "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/253156"
                         }
                       ].map((proj, idx) => (
-                        <tr key={idx} className="hover:bg-slate-50 transition-colors group">
+                        <tr 
+                          key={idx} 
+                          className={`hover:bg-slate-50 transition-colors cursor-pointer group ${expandedProjectId === proj.id ? 'bg-emerald-50 border-emerald-200' : ''}`}
+                          onClick={() => setExpandedProjectId(expandedProjectId === proj.id ? null : proj.id)}
+                        >
                           <td className="px-6 py-4">
                             <div className="flex flex-col gap-0.5">
-                              <span className="font-mono text-[9px] text-slate-400 uppercase tracking-widest">{proj.id}</span>
-                              <span className={`text-[11px] font-bold text-slate-700 ${proj.rtl ? 'text-right' : ''}`} dir={proj.rtl ? 'rtl' : 'ltr'}>
+                              <span className={`font-mono text-[9px] uppercase tracking-widest ${expandedProjectId === proj.id ? 'text-emerald-600 font-bold' : 'text-slate-400'}`}>{proj.id}</span>
+                              <span className={`text-[11px] font-bold ${expandedProjectId === proj.id ? 'text-slate-900 text-sm' : 'text-slate-700'} ${proj.rtl ? 'text-right' : ''} line-clamp-1 group-hover:line-clamp-none transition-all`} dir={proj.rtl ? 'rtl' : 'ltr'}>
                                 {proj.title}
                               </span>
                             </div>
+                            
+                            <AnimatePresence>
+                              {expandedProjectId === proj.id && (
+                                <motion.div
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: 'auto', opacity: 1 }}
+                                  exit={{ height: 0, opacity: 0 }}
+                                  className="overflow-hidden"
+                                >
+                                  <div className="pt-4 pb-2 space-y-3">
+                                    <div className="p-3 bg-white/80 border border-emerald-100 rounded text-[11px]">
+                                      <p className={`text-slate-800 leading-relaxed font-semibold ${proj.rtl ? 'text-right outline-none' : ''}`} dir={proj.rtl ? 'rtl' : 'ltr'}>
+                                        {proj.title}
+                                      </p>
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                       <div className="p-2 bg-white/60 border border-emerald-100 rounded">
+                                          <p className="font-black text-[9px] text-emerald-600 uppercase">DATE D'EXÉCUTION</p>
+                                          <p className="font-mono text-slate-700 font-bold">{proj.date}</p>
+                                       </div>
+                                       <div className="p-2 bg-white/60 border border-emerald-100 rounded">
+                                          <p className="font-black text-[9px] text-emerald-600 uppercase">LOCALISATION</p>
+                                          <p className="text-slate-700 font-bold truncate">{proj.client.split(' / ')[1] || 'Maroc'}</p>
+                                       </div>
+                                    </div>
+                                  </div>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
                           </td>
-                          <td className="px-6 py-4 text-[11px] font-medium text-slate-500 uppercase">{proj.client}</td>
+                          <td className="px-6 py-4 text-[11px] font-medium text-slate-500 uppercase">{proj.client.split(' / ')[0]}</td>
                           <td className={`px-6 py-4 text-right`}>
-                            <span className={`font-mono text-[9px] font-black uppercase tracking-widest ${proj.statusColor}`}>
-                              {proj.status}
-                            </span>
+                            <div className="flex flex-col items-end gap-1">
+                               <span className={`font-mono text-[9px] font-black uppercase tracking-widest ${proj.statusColor} flex flex-col items-end`}>
+                                <span>{proj.status}</span>
+                                <span className="text-[8px] opacity-70 underline decoration-1">{proj.date}</span>
+                              </span>
+                              {proj.link && (
+                                <a 
+                                  href={proj.link} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="text-[9px] text-emerald-600 hover:underline font-bold bg-emerald-100/50 px-1.5 py-0.5 rounded-sm"
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  LIEN REF
+                                </a>
+                              )}
+                            </div>
                           </td>
                         </tr>
                       ))}
