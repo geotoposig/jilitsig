@@ -25,7 +25,7 @@ const contact = {
   age: "33 ans",
   license: "Permis B",
   phone: "+212 668 09 02 85",
-  email: "jilitsig@hotmail.com",
+  email: "jilitsig@gmail.com",
   location: "Agadir, Maroc",
   linkedin: "#",
 };
@@ -134,16 +134,16 @@ export default function App() {
             >
               {/* Left Column: Profile & Info */}
               <div className="lg:col-span-4 flex flex-col gap-6">
-                <div className="bg-white border border-gray-300 p-6 border-l-4 border-l-blue-600 relative">
+                <div className="bg-white border border-gray-300 p-6 border-l-4 border-l-orange-300 relative">
                   <div className="flex justify-between items-start mb-6">
-                    <h2 className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Objectif & Profil</h2>
+                    <h2 className="text-[10px] font-black uppercase text-slate-400 tracking-widest bg-orange-50 px-2 py-0.5 rounded">Objectif</h2>
                     <span className="font-mono text-[10px] text-slate-400">01/04</span>
                   </div>
-                  <h3 className="text-xl font-bold leading-tight mb-4">{title}</h3>
+                  <h3 className="text-xl font-bold leading-tight mb-4">Cartographe, Géomaticien, Enquêteur & Aménagement territoire</h3>
                   <p className="text-xs text-slate-600 leading-relaxed text-justify mb-6">
-                    Expert avec plus de <strong className="text-ink">7 ans d'expérience</strong> en analyse spatiale et modélisation des risques. 
-                    Spécialisé dans l'intégration de l'<strong className="text-blue-600">IA (Geo-AI)</strong> et le développement 
-                    de solutions de cartographie interactive pour l'aménagement durable du territoire.
+                    <strong className="text-ink">Expert (+7 ans)</strong> en analyse spatiale, études de terrain et modélisation des risques. 
+                    Je maîtrise l’intégration de l’IA et la cartographie interactive pour le traitement de données complexes. 
+                    <strong className="text-blue-600">Formateur certifié (ArcGIS, QGIS)</strong>, j'allie expertise scientifique et innovation technologique pour l'aménagement durable des territoires.
                   </p>
                   
                   <div className="pt-6 border-t border-gray-100 flex flex-col gap-3">
@@ -164,17 +164,23 @@ export default function App() {
 
                 <div className="bg-white border border-gray-300 p-6">
                   <div className="flex justify-between items-start mb-6">
-                    <h2 className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Formation</h2>
+                    <h2 className="text-[10px] font-black uppercase text-slate-400 tracking-widest bg-orange-50 px-2 py-0.5 rounded">Formation Académique</h2>
                     <span className="font-mono text-[10px] text-slate-400">02/04</span>
                   </div>
                   <div className="space-y-6">
-                    <div className="border-l-2 border-blue-600 pl-4">
-                      <p className="text-[11px] font-black uppercase mb-1">Master Spécialisé SIG & Télédétection</p>
-                      <p className="font-mono text-[10px] text-slate-500">Univ. Hassan II Casablanca | 2017-2019</p>
+                    <div className="border-l-2 border-orange-300 pl-4">
+                      <p className="text-[11px] font-black uppercase mb-1">Master Spécialisé En SIG, Télédétection et Cartographie Appliquée</p>
+                      <p className="font-mono text-[10px] text-slate-500 mb-2">2017-2019 | Univ. Hassan II Casablanca, Maroc</p>
+                      <p className="text-[10px] text-slate-400 leading-relaxed italic">Théorie et pratique des SIG - Cartographie - Aménagement et collectivités locales - Télédétection - GPS.</p>
                     </div>
                     <div className="border-l-2 border-gray-200 pl-4">
-                      <p className="text-[11px] font-black uppercase mb-1">Licence en Géographie</p>
-                      <p className="font-mono text-[10px] text-slate-500">Univ. Ibn Zohr Agadir | 2014-2017</p>
+                      <p className="text-[11px] font-black uppercase mb-1">Licence Fondamentale En Géographie</p>
+                      <p className="font-mono text-[10px] text-slate-500 mb-2">2014-2017 | Univ. Ibn Zohr Agadir, Maroc</p>
+                      <p className="text-[10px] text-slate-400 leading-relaxed italic">Urbanisme, statistiques, Système d'information géographique, démographie et aménagement territoriale.</p>
+                    </div>
+                    <div className="border-l-2 border-gray-200 pl-4">
+                      <p className="text-[11px] font-black uppercase mb-1">Baccalauréat Lettres & Sciences Humaines</p>
+                      <p className="font-mono text-[10px] text-slate-500">2013-2014 | Lycée Sidi Moussa Lhamri, Taroudant</p>
                     </div>
                   </div>
                 </div>
@@ -243,7 +249,7 @@ export default function App() {
               <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-gray-300 pb-4 gap-4">
                 <div>
                   <h2 className="text-3xl font-black uppercase tracking-tighter">Compétences & Expertise</h2>
-                  <p className="text-xs text-slate-500 font-medium uppercase tracking-widest mt-1">Géo-Intelligence & Analyse Spatiale</p>
+                  <p className="text-xs text-slate-500 font-medium uppercase tracking-widest mt-1">Maîtrise des écosystèmes ESRI, Open Source GIS et intégration de modèles de Deep Learning</p>
                 </div>
                 <span className="font-mono text-[10px] text-slate-400">STACK_ANALYSIS.LOG</span>
               </div>
@@ -349,83 +355,151 @@ export default function App() {
               initial="initial"
               animate="animate"
               exit="exit"
-              className="space-y-8"
+              className="space-y-12"
             >
-              <div className="flex justify-between items-end border-b border-gray-300 pb-4">
-                <h2 className="text-3xl font-black uppercase tracking-tighter">Parcours Professionnel</h2>
-                <span className="font-mono text-[10px] text-slate-400">TIMELINE_EXEC.DAT</span>
+              {/* Professional Experience Section */}
+              <div className="space-y-6">
+                <div className="flex justify-between items-end border-b border-gray-300 pb-4">
+                  <div>
+                    <h2 className="text-3xl font-black uppercase tracking-tighter">Expériences Professionelles</h2>
+                    <p className="text-xs text-slate-500 font-medium uppercase tracking-widest mt-1">Parcours centré sur l'aménagement du territoire et l'analyse de données géospatiales complexes</p>
+                  </div>
+                  <span className="font-mono text-[10px] text-slate-400">EXP_PR_EXEC.DAT</span>
+                </div>
+
+                <div className="grid grid-cols-1 gap-4 max-w-4xl">
+                  {[
+                    {
+                      company: "AGRI INVEST DÉVELOPPEMENT",
+                      year: "05/25 - 06/25",
+                      role: "Chargé de mission Enquêteur & Chauffeur",
+                      desc: "Collecte des données relatives aux coopératives laitières de la région de l'Oriental au profit de la Direction régionale de l'agriculture."
+                    },
+                    {
+                      company: "Global for Survey and Consulting (GSC)",
+                      year: "05/25 - 06/25",
+                      role: "Chargé de mission Enquêteur (N°01/ECP/2025)",
+                      desc: "Collecte de données pour mesurer la conformité des établissements pionniers aux critères de labélisation au profit de l'ONDH. Responsable: Prof. Mhammed Abderebbi."
+                    },
+                    {
+                      company: "Global for Survey and Consulting (GSC)",
+                      year: "07/24 - 08/24",
+                      role: "Chargé de mission Enquêteur Contrôleur & Chauffeur",
+                      desc: "Réalisation d'enquête panel de ménages au profit de l'Observatoire National de Développement Humain (ONDH). Responsable: Prof. Mhammed Abderebbi."
+                    },
+                    {
+                      company: "Haut-Commissariat au Plan (HCP)",
+                      year: "12/23 - 05/24",
+                      role: "Chargé de mission Opérateur Cellule SIG",
+                      desc: "Mise à jour des repères géographiques et découpage des districts pour le recensement 2024 RGPH (urbain et rural) via QGIS."
+                    },
+                    {
+                      company: "Haut-Commissariat au Plan (HCP)",
+                      year: "03/23 - 12/23",
+                      role: "Chargé de mission Contrôleur Cartographe",
+                      desc: "Coordination avec les agents d'autorité et les équipes terrain pour assurer une collecte précise des données cartographiques."
+                    },
+                    {
+                      company: "PCM Consulting",
+                      year: "08/22 - 03/23",
+                      role: "Enquêteur de terrain & Chauffeur",
+                      desc: "Enquête nationale pour l'établissement d'une situation de référence (PAF2022) sur l'inclusion de la petite agriculture."
+                    },
+                    {
+                      company: "SIS Consultants",
+                      year: "06/22 - 08/22",
+                      role: "Chargé de Projet - L'investissement touristique",
+                      desc: "Responsable d'équipes de collecte des données du secteur touristique (Supervision de 20 personnes)."
+                    },
+                    {
+                      company: "MAROC INGENOV",
+                      year: "06/21 - 08/22",
+                      role: "Enquêteur de terrain & Chauffeur",
+                      desc: "Inventaire des points d'eau et leurs usages en milieu urbain pour l'Agence du Bassin Hydraulique du Bouregreg et de la Chaouia (ABHBC)."
+                    },
+                    {
+                      company: "Faculté des Sciences Appliquées Ait Melloul",
+                      year: "11/19 - 03/20",
+                      role: "Stagiaire bibliothécaire",
+                      desc: "Numérisation, archivage et organisation d'événements scientifiques (conférences, workshops). Orientation et conseil du public."
+                    }
+                  ].map((exp, idx) => (
+                    <div key={idx} className="bg-white border border-gray-300 p-6 flex flex-col md:flex-row gap-6 relative group hover:border-blue-400 transition-colors">
+                      <div className="w-32 shrink-0">
+                         <span className="inline-block bg-slate-900 border border-slate-800 text-white text-[9px] font-black px-2 py-0.5 uppercase tracking-widest">
+                            {exp.year}
+                         </span>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-sm font-black uppercase tracking-tight mb-1">{exp.company}</h3>
+                        <p className="text-xs font-bold text-blue-600 mb-4">{exp.role}</p>
+                        <p className="text-xs text-slate-500 leading-relaxed font-medium">{exp.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <div className="grid grid-cols-1 gap-4 max-w-4xl">
-                {[
-                  {
-                    company: "AGRI INVEST DÉVELOPPEMENT",
-                    year: "05/25 - 06/25",
-                    role: "Chargé de mission Enquêteur & Chauffeur",
-                    desc: "Collecte des données relatives aux coopératives laitières de la région de l'Oriental au profit de la Direction régionale de l'agriculture."
-                  },
-                  {
-                    company: "Global for Survey and Consulting (GSC)",
-                    year: "05/25 - 06/25",
-                    role: "Chargé de mission Enquêteur (N°01/ECP/2025)",
-                    desc: "Collecte de données pour mesurer la conformité des établissements pionniers aux critères de labélisation au profit de l'ONDH. Responsable: Prof. Mhammed Abderebbi."
-                  },
-                  {
-                    company: "Global for Survey and Consulting (GSC)",
-                    year: "07/24 - 08/24",
-                    role: "Chargé de mission Enquêteur Contrôleur & Chauffeur",
-                    desc: "Réalisation d'enquête panel de ménages au profit de l'Observatoire National de Développement Humain (ONDH). Responsable: Prof. Mhammed Abderebbi."
-                  },
-                  {
-                    company: "Haut-Commissariat au Plan (HCP)",
-                    year: "12/23 - 05/24",
-                    role: "Chargé de mission Opérateur Cellule SIG",
-                    desc: "Mise à jour des repères géographiques et découpage des districts pour le recensement 2024 RGPH (urbain et rural) via QGIS."
-                  },
-                  {
-                    company: "Haut-Commissariat au Plan (HCP)",
-                    year: "03/23 - 12/23",
-                    role: "Chargé de mission Contrôleur Cartographe",
-                    desc: "Coordination avec les agents d'autorité et les équipes terrain pour assurer une collecte précise des données cartographiques."
-                  },
-                  {
-                    company: "PCM Consulting",
-                    year: "08/22 - 03/23",
-                    role: "Enquêteur de terrain & Chauffeur",
-                    desc: "Enquête nationale pour l'établissement d'une situation de référence (PAF2022) sur l'inclusion de la petite agriculture."
-                  },
-                  {
-                    company: "SIS Consultants",
-                    year: "06/22 - 08/22",
-                    role: "Chargé de Projet - L'investissement touristique",
-                    desc: "Responsable d'équipes de collecte des données du secteur touristique (Supervision de 20 personnes)."
-                  },
-                  {
-                    company: "MAROC INGENOV",
-                    year: "06/21 - 08/22",
-                    role: "Enquêteur de terrain & Chauffeur",
-                    desc: "Inventaire des points d'eau et leurs usages en milieu urbain pour l'Agence du Bassin Hydraulique du Bouregreg et de la Chaouia (ABHBC)."
-                  },
-                  {
-                    company: "Faculté des Sciences Appliquées Ait Melloul",
-                    year: "11/19 - 03/20",
-                    role: "Stagiaire bibliothécaire",
-                    desc: "Numérisation, archivage et organisation d'événements scientifiques (conférences, workshops). Orientation et conseil du public."
-                  }
-                ].map((exp, idx) => (
-                  <div key={idx} className="bg-white border border-gray-300 p-6 flex flex-col md:flex-row gap-6 relative group hover:border-blue-400 transition-colors">
-                    <div className="w-32 shrink-0">
-                       <span className="inline-block bg-slate-900 border border-slate-800 text-white text-[9px] font-black px-2 py-0.5 uppercase tracking-widest">
-                          {exp.year}
-                       </span>
+              {/* Ateliers et Formation Section */}
+              <div className="space-y-6">
+                <div className="flex justify-between items-end border-b border-gray-300 pb-4">
+                  <h2 className="text-3xl font-black uppercase tracking-tighter">Ateliers & Formations Animés</h2>
+                  <span className="font-mono text-[10px] text-slate-400">TRAINING_LOG.DAT</span>
+                </div>
+
+                <div className="grid grid-cols-1 gap-4 max-w-4xl">
+                  {[
+                    {
+                      title: "SIG : Techniques d’Acquisition et de Traitement des Données",
+                      org: "AFRICAN TALENT SKILL & Labo LADES",
+                      year: "10/2025",
+                      role: "Formateur Spécialisé",
+                      desc: "Animation d'une formation spécialisée en Systèmes d’Information Géographique à Mohammedia, Maroc."
+                    },
+                    {
+                      title: "Géo IA et Gestion des Risques Naturels",
+                      org: "Faculté des Sciences Humaines et Sociales Kénitra",
+                      year: "12/24 - 02/25",
+                      role: "Professeur Vacataire (Master)",
+                      desc: "Conception et animation de séances théoriques et pratiques liées aux SIG pour le niveau Master."
+                    },
+                    {
+                      title: "Théorie et applications pratiques sur QGIS 3.34.0",
+                      org: "Centre des Études Géostratégiques",
+                      year: "10/2024",
+                      role: "Formateur SIG",
+                      desc: "Animation d'une formation intitulée « théorie et applications pratiques sur QGIS 3.34.0 »."
+                    },
+                    {
+                      title: "Systèmes d'Information Géographique : ArcGIS & Analyse Spatiale",
+                      org: "Centre des Études Géostratégiques",
+                      year: "09/2023",
+                      role: "Formateur SIG",
+                      desc: "Formation sur le logiciel ArcGIS, analyse spatiale et gestion des bases de données."
+                    },
+                    {
+                      title: "Tutorat Pédagogique en Géographie",
+                      org: "Faculté des Lettres et Sciences Humaines Agadir",
+                      year: "11/22 - 03/23",
+                      role: "Professeur Vacataire (Tutorat)",
+                      desc: "Soutiens pédagogiques au profit des étudiants en géographie (Semestre 1)."
+                    }
+                  ].map((train, idx) => (
+                    <div key={idx} className="bg-white border border-gray-300 p-6 flex flex-col md:flex-row gap-6 relative group hover:border-blue-400 border-l-4 border-l-blue-600 transition-colors shadow-sm">
+                      <div className="w-32 shrink-0">
+                         <span className="inline-block bg-blue-600 text-white text-[9px] font-black px-2 py-0.5 uppercase tracking-widest">
+                            {train.year}
+                         </span>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-sm font-black uppercase tracking-tight mb-1">{train.title}</h3>
+                        <p className="text-xs font-bold text-slate-800 mb-2">{train.org}</p>
+                        <p className="text-xs font-bold text-blue-600 mb-2 uppercase tracking-tighter">{train.role}</p>
+                        <p className="text-xs text-slate-500 leading-relaxed font-medium italic">"{train.desc}"</p>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-sm font-black uppercase tracking-tight mb-1">{exp.company}</h3>
-                      <p className="text-xs font-bold text-blue-600 mb-4">{exp.role}</p>
-                      <p className="text-xs text-slate-500 leading-relaxed font-medium">{exp.desc}</p>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </motion.div>
           )}
